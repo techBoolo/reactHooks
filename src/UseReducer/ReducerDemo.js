@@ -18,21 +18,23 @@ const ReducerDemo = (props) => {
   }
   return (
     <>
+    <h4>Counter</h4>
     <button onClick={() => dispatch(actions.inc())}>inc</button>
      <span style={{ margin: '10px', padding: '10px'}}>{ state.count }</span>      
     <button onClick={() => dispatch(actions.dec())}>dec</button>
     <div>
       <button onClick={() => dispatch(actions.reset())}>reset</button>
     </div>
+    <h4>Todo</h4>
+    <form onSubmit={addTodo}>
+      <input value={todo} onChange={(ev) => setTodo(ev.target.value) } />
+      <button type='submit'>Add</button>
+    </form>
     <ul>
       {
         state.todos.map(todo => <li key={todo.id} onClick={(ev) => dispatch(actions.remove_todo(todo.id))}>{todo.title}</li>)
       }
     </ul>
-    <form onSubmit={addTodo}>
-      <input value={todo} onChange={(ev) => setTodo(ev.target.value) } />
-      <button type='submit'>Add</button>
-    </form>
     </>
   );
 };
